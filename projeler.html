@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projelerim</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6b73ff, #000dff);
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #ffdd00;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 50px;
+    }
+
+    .project-card {
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        color: inherit; 
+        text-decoration: none; 
+        display: block; 
+}
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .project-card .content {
+      padding: 20px;
+    }
+    .project-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #ffdd00;
+    }
+    .project-card p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Enes'in Projeleri</h1>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hakkında.html">Hakkımda</a>
+      <a href="iletişim.html">İletişim</a>
+    </nav>
+  </header>
+
+  <section class="projects">
+    <a href="https://www.smashmerukia.biz" class="project-card">
+      <img src="https://via.placeholder.com/400x150" alt="Proje 1">
+      <div class="content">
+        <h3>Ruki wiki</h3>
+        <p>Sevdiğim karakter için yaptıığım ve biraz da HTML becerilerimi geliştirmek için başladığım ilk sitem.</p>
+      </div>
+      </a>
+    </div>
+    <a href="https://www.smashmerukia.biz/Rain.html" class="project-card">
+  
+      <img src="ra.PNG" alt="Proje 2">
+      <div class="content">
+        <h3>Rain</h3>
+        <p>Bleach'daki ichigo ile old man zangetsunun ilk karşılaşmasının animasyonu.</p>
+      </div>
+    </a>
+    <a href="https://www.smashmerukia.biz/chat.html" class="project-card">
+      <img src="chatly.PNG" alt="Proje 3">
+      <div class="content">
+        <h3>Chatly</h3>
+        <p>Discord benzeri arkadaşlarıma konuşmak için yaptığım server bağlantısı olan projem.</p>
+      </div>
+      </a>
+      <a href="https://www.smashmerukia.biz/mağaza.html"class="project-card">
+    
+        <img src="techzone.PNG" alt="Proje 3">
+        <div class="content">
+            <h3>TechZone</h3>
+            <p>Eğlenmek için yaptığım teknoloji mağazam</p>
+        </div>
+        </a>
+
+  </section>
+
+  <footer>
+    &copy; 2025 Enes. Tüm hakları saklıdır.
+  </footer>
+
+</body>
+</html>
