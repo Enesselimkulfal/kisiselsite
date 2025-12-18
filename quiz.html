@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Romance Anime Quiz</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #ffe3ee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .quiz-box {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 0 10px #ff9acb;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background: #ff67a0;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #ff478c;
+    }
+    .option {
+      background: #ffd3e5;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .option:hover {
+      background: #ffbad7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-box">
+    <h2 id="question">Soru Yükleniyor...</h2>
+    <div id="options"></div>
+    <button id="nextBtn" style="display:none;">Sonraki Soru</button>
+    <h3 id="score" style="margin-top:15px;"></h3>
+  </div>
+
+<script>
+const quiz = [
+  {
+    question: "Toradora'da Taiga'nın lakabı nedir?",
+    options: ["Palmtop Tiger", "Tiny Monster", "Little Dragon", "Pocket Lion"],
+    answer: "Palmtop Tiger"
+  },
+  {
+    question: "Your Name filminde Mitsuha'nın yaşadığı yer neresidir?",
+    options: ["Tokyo", "Itomori", "Osaka", "Kyoto"],
+    answer: "Itomori"
+  },
+  {
+    question: "Horimiya’da Miyamura’nın gizlediği şey nedir?",
+    options: ["Dövme & piercing", "Kardeşi", "Saç rengi", "Göz rengi"],
+    answer: "Dövme & piercing"
+  },
+  {
+    question: "Clannad'da Tomoya'nın aşk yaşadığı ana karakter kimdir?",
+    options: ["Kotomi", "Tomoyo", "Kyou", "Nagisa"],
+    answer: "Nagisa"
+  },
+  {
+    question: "Your Lie in April’de Kousei hangi enstrümanı çalıyor?",
+    options: ["Keman", "Piyano", "Çello", "Bateri"],
+    answer: "Piyano"
+  },
+  {
+    question: "Ao Haru Ride’da Futaba'nın çocukluktaki aşkı kimdir?",
+    options: ["Mabuchi Kou", "Tanaka Sensei", "Murao", "Uchimura"],
+    answer: "Mabuchi Kou"
+  },
+  {
+    question: "Orange animesinde mektup kime ulaşır?",
+    options: ["Geleceğe", "Çocukluk arkadaşına", "Geçmişteki kendisine", "Sınıf öğretmenine"],
+    answer: "Geçmişteki kendisine"
+  },
+  {
+    question: "Fruits Basket’te Tohru’nun tanıştığı aile hangisidir?",
+    options: ["Miyamura ailesi", "Sohma ailesi", "Hyuuga ailesi", "Hori ailesi"],
+    answer: "Sohma ailesi"
+  },
+  {
+    question: "ReLIFE'da Arata tekrar liseye kaç yaşında döner?",
+    options: ["17", "18", "27", "25"],
+    answer: "27"
+  },
+  {
+    question: "Kimi ni Todoke’de Sawako'nun lakabı nedir?",
+    options: ["Sadako", "Snow Girl", "Ghost", "Angel"],
+    answer: "Sadako"
+  },
+  {
+    question: "Weathering With You'da Hina’nın özel gücü nedir?",
+    options: ["İnsanları iyileştirme", "Uçma", "Hava kontrolü", "Ruhları görme"],
+    answer: "Hava kontrolü"
+  },
+  {
+    question: "Nisekoi'de Ichijou'nun anahtarı kimdedir?",
+    options: ["Chitoge", "Onodera", "Marika", "Haruna"],
+    answer: "Onodera"
+  },
+  {
+    question: "Love is War’da öğrenci konseyi başkanı kimdir?",
+    options: ["Ishigami", "Kaguya", "Miko", "Miyuki Shirogane"],
+    answer: "Miyuki Shirogane"
+  },
+  {
+    question: "Kaguya-sama: Love is War hangi tür ilişkiyi anlatır?",
+    options: ["Arkadaşlık", "Aşk savaşı", "Macera", "Drama"],
+    answer: "Aşk savaşı"
+  },
+  {
+    question: "Snow White with the Red Hair’de Shirayuki’nin saç rengi nedir?",
+    options: ["Sarı", "Siyah", "Kırmızı", "Pembe"],
+    answer: "Kırmızı"
+  },
+  {
+    question: "Tonikaku Kawaii’de Tsukasa ve Nasa'nın ilişkisi nasıl başlar?",
+    options: ["Aynı okulda", "Yan komşu", "Evlenerek", "Çocukluk arkadaşlığı"],
+    answer: "Evlenerek"
+  },
+  {
+    question: "Bloom Into You animesi hangi tür romantizme odaklanır?",
+    options: ["Shounen-ai", "Yuri", "Haremlik", "Josei"],
+    answer: "Yuri"
+  },
+  {
+    question: "5 Centimeters Per Second'ın yönetmeni kimdir?",
+    options: ["Makoto Shinkai", "Hayao Miyazaki", "Shinichiro Watanabe", "Mamoru Hosoda"],
+    answer: "Makoto Shinkai"
+  },
+  {
+    question: "Plastic Memories’de androidlere ne denir?",
+    options: ["Gestalts", "Dolls", "Giftias", "Synthemas"],
+    answer: "Giftias"
+  },
+  {
+    question: "Tsuki ga Kirei’de karakterler nasıl iletişim kurar?",
+    options: ["Mektupla", "Kargo güvercini", "LINE mesajları", "E-posta"],
+    answer: "LINE mesajları"
+  }
+];
+
+
+  let index = 0;
+  let score = 0;
+
+  const questionEl = document.getElementById("question");
+  const optionsEl = document.getElementById("options");
+  const nextBtn = document.getElementById("nextBtn");
+  const scoreEl = document.getElementById("score");
+
+  function loadQuestion() {
+    nextBtn.style.display = "none";
+    optionsEl.innerHTML = "";
+
+    let q = quiz[index];
+    questionEl.textContent = q.question;
+
+    q.options.forEach(option => {
+      let div = document.createElement("div");
+      div.className = "option";
+      div.textContent = option;
+      div.onclick = () => checkAnswer(option);
+      optionsEl.appendChild(div);
+    });
+  }
+
+  function checkAnswer(selected) {
+    let correct = quiz[index].answer;
+
+    if (selected === correct) {
+      score++;
+      alert("Doğru! 💖");
+    } else {
+      alert("Yanlış 😢 Doğru cevap: " + correct);
+    }
+
+    nextBtn.style.display = "block";
+  }
+
+  nextBtn.onclick = () => {
+    index++;
+    if (index < quiz.length) {
+      loadQuestion();
+    } else {
+      finishQuiz();
+    }
+  };
+
+  function finishQuiz() {
+    questionEl.textContent = "Quiz Bitti!";
+    optionsEl.innerHTML = "";
+    nextBtn.style.display = "none";
+    scoreEl.textContent = `Puanın: ${score} / ${quiz.length}`;
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+</html>
